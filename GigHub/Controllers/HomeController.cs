@@ -1,16 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GigHub.Models;
+using GigHub.ViewsModels;
+using System;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GigHub.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public HomeController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var upcomingGigs = _context.Gigs
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .Where(g => g.DateTime > DateTime.Now && g.IsCanceled == false);
+
+            var homeViewModel = new GigsViewModel
+            {
+                UpcomingGigs = upcomingGigs,
+                IsAuthenticated = User.Identity.IsAuthenticated,
+                Heading = "Upcoming gigs:"
+            };
+
+            return View("Gigs", homeViewModel);
         }
 
         public ActionResult About()

@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 90px;
     padding-bottom: 20px;
 }
 
@@ -22,3 +22,155 @@ select,
 textarea {
     max-width: 280px;
 }
+
+span.field-validation-error {
+    color: red;
+    font-weight:bold;
+}
+
+.voffset1 {
+    margin-top: 2px;
+}
+.voffset2 {
+    margin-top: 5px;
+}
+.voffset3 {
+    margin-top: 10px;
+}
+.voffset4 {
+    margin-top: 20px;
+}
+.voffset5 {
+    margin-top: 40px;
+}
+
+.voffset6 {
+    margin-top: 80px;
+}
+
+select.form-control
+{
+    padding: 0px 20px;
+}
+
+/*My Bootstrap overides*/
+
+body {
+    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Lato", Helvetica, Arial, sans-serif;
+}
+
+.navbar-inverse {
+    background-color: #ff3333;
+    border-color: #ff3333;
+}
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #fff;
+    }
+
+    .navbar-inverse .navbar-brand {
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+        background-color: rgba(216, 53, 53, 0.43);
+    }
+
+    .navbar-inverse .navbar-nav > .dropdown > a .caret {
+        border-top-color: #ffffff;
+        border-bottom-color: #ffffff;
+    }
+    .navbar-inverse .notifications {
+        position: relative;
+    }
+
+
+.navbar-inverse .notifications .badge {
+    position: absolute;
+    top: 8px;
+    right:-2px;
+    background: #bb0000;
+}
+
+.form-control {
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+    .form-control:focus {
+        border-color: #44a1eb;
+        webkit-box-shadow: none;
+        box-shadow: none;
+    }
+.btn {
+    /*padding: 8px 30px;*/
+    /*font-size: 17px;*/
+}
+
+/*Page specific styles GigsIndex*/
+
+.gigs{
+    list-style:none;
+}
+
+.gigs > li {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.gigs >li .Details{
+    position:absolute;
+    top:0px;
+    left:70px;
+    width: 200px;
+}
+
+    .gigs > li .Date {
+        background-color: red;
+        color: white;
+        width: 60px;
+        border-radius: 8px;
+    }
+
+.gigs >li .Date .Month{
+    font-size:14px;
+    font-weight:bold;
+    text-align:center;
+    padding: 2px 8px;
+    text-transform:uppercase;
+    
+}
+
+.gigs > li .Date .Day {
+    text-align:center;
+    background-color:#e9e9e9;
+    color: black;
+    font-weight:bold;
+    font-size:15px;
+    padding: 5px 12px;
+}
+
+.gigs >li .Details .Artist{
+    display:block;
+    font-weight:bold;
+}
+
+    .gigs > li .Details .Genre {
+        font-size:15px;
+    }
+
+    .gigs > li .Actions {
+        font-size: 15px;
+        display: none;
+    }
+
+    .gigs > li :hover .Actions {
+        display: block;
+    }

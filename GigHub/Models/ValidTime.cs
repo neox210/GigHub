@@ -4,19 +4,21 @@ using System.Globalization;
 
 namespace GigHub.Models
 {
-    public class FutureDate : ValidationAttribute
+    public class ValidTime : ValidationAttribute
     {
+
         public override bool IsValid(object value)
         {
             DateTime dateTime;
 
             var isValid = DateTime.TryParseExact(Convert.ToString(value),
-                "yyyy MM dd",
+                "HH:mm",
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.None,
                 out dateTime);
 
-            return (isValid && dateTime > DateTime.Now);
+            return (isValid);
         }
+
     }
 }

@@ -1,0 +1,71 @@
+﻿@model GigHub.ViewsModels.GigsViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>@Model.Heading</h1>
+
+<ul class="gigs voffset6">
+    @foreach (var gig in Model.UpcomingGigs)
+    {
+        <li>
+            <div class="Date">
+                <div class="Month">@gig.DateTime.ToString("MMM")</div>
+                <div class="Day">@gig.DateTime.ToString("d ")</div>
+            </div>
+            <div class="Details">
+                <span class="Artist">
+                    @gig.Artist.Name
+                    @if (gig.IsCanceled)
+                    {
+                        <span class="label label-warning">Canceled</span>
+                    }
+
+                    @if (Model.IsAuthenticated)
+                    {
+                        <button data-user-id="@gig.ArtistId" class="btn btn-link btn-sm pull-right js-toggle-follow">Follow?</button>
+                    }
+                </span>
+
+                <span class="Genre">
+                    @gig.Genre.Name
+                    @if (Model.IsAuthenticated && gig.IsCanceled == false)
+                    {
+                        <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Going?</button>
+                    }
+                </span>
+
+            </div>
+        </li>
+    }
+</ul>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(".js-toggle-attendance").click(function (e) {
+                var button = e.target;
+                $.post("/api/attendances", { "gigId": $(button).attr("data-gig-id") })
+                    .done(function () {
+                        $(button).removeClass("btn-default").addClass("btn-info").text("Going");
+                    })
+                    .fail(function () {
+                        alert("Something failed");
+                    })
+            });
+
+            $(".js-toggle-follow").click(function (f) {
+                var button = f.target;
+                $.post("/api/follows", { "ArtistId": $(button).attr("data-user-id") })
+                    .done(function () {
+                        $(button).removeClass("btn-default").addClass("btn-info").text("Going");
+                    })
+                    .fail(function () {
+                        alert("Something failed");
+                    })
+            });
+        });
+    </script>
+
+}
